@@ -9,6 +9,7 @@ import androidx.navigation.NavController
 class SharedContent(savedStateHandle: SavedStateHandle) : ViewModel() {
   val intent = savedStateHandle.getStateFlow(NavController.KEY_DEEP_LINK_INTENT, Intent()).value
   var content: String? = null
+  var hasUri = false
   val type = intent.type
   
   init {
@@ -26,6 +27,7 @@ private fun parseIntent(self: SharedContent) {
   val uri = self.intent.getParcelableExtra(Intent.EXTRA_STREAM, Uri::class.java)
   if (uri != null) {
     self.content = uri.toString()
+    self.hasUri = true
     return
   }
 

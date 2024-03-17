@@ -56,7 +56,7 @@ fun ShareScreen() {
       sharedContent.content?.let { Text(it) }
       if (sharedContent.isImage()) { GlideImage(model = sharedContent.content, contentDescription = "Shared image") }
       Spacer(modifier = Modifier.weight(1f))
-      Button(enabled = sharedContent.isImage(), onClick = { doUpload(context, sharedContent.content!!) },  modifier = Modifier
+      Button(enabled = sharedContent.hasUri, onClick = { doUpload(context, sharedContent.content!!) },  modifier = Modifier
         .align(Alignment.End)
         .padding(16.dp)) {
         Text("Upload")
